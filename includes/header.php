@@ -1,10 +1,8 @@
 <?php
 
-
 include('settings.php');
 require_once('functions.php');
 require_once('../includes/contactFormulier.php');
-
 
  ?><!DOCTYPE html>
 <html lang="nl">

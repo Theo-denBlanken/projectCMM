@@ -80,7 +80,7 @@ if ( isset($_POST['log_in']) ) {
            die( 'de query is niet goed: '. $verbinding->error );
          }
          // resultaat verwerken
-         // als het resultaat uit de equery precies 1 oplevert
+         // als het resultaat uit de equery precies 1 oplevert:
          if ( 1 == mysqli_num_rows( $resultaat ) ) {
            $gebruiker = mysqli_fetch_assoc($resultaat);
            $voornaam = $gebruiker['vnaam'];
@@ -122,6 +122,8 @@ if ( isset($_POST['log_in']) ) {
 }
 
 echo 'de inlogfunctie heeft gedraaid.' ;
+
+
 geefSession();
 // de sessie weergeven
 function geefSession() {
