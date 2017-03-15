@@ -1,6 +1,6 @@
 <?php
-echo "pagina start... ";
-geefSession();
+// echo "pagina start... ";
+// geefSession();
 
 // de inlogsessie ook wel inlogfunctie
 // variablen aanmaken of uit de $_SESSION halen
@@ -13,9 +13,10 @@ $achternaam     = ( isset($_SESSION['anaam']) )       ? $_SESSION['anaam']      
 $inlogKnopTekst = ( isset($_SESSION['knopTekst']) )   ? $_SESSION['knopTekst']  : 'Log in';
 $inlogKnopName  = ( isset($_SESSION['submitNaam']) )  ? $_SESSION['submitNaam'] : 'log_in';
 $inlogKnopClass = ( isset($_SESSION['verberg']) )     ? $_SESSION['verberg']    : 'form-group';
+$schrijfKnop    = ( isset($_SESSION['schrijf']) )     ? $_SESSION['schrijf']    :'';  // extra pagina
 
-echo "variableen geset of gehaald";
-geefSession();
+// echo "variabelen geset of gehaald";
+// geefSession();
 // verwerking van de submit-knop actie
 
 if ( isset($_POST['log_in']) ) {
@@ -59,6 +60,7 @@ if ( isset($_POST['log_in']) ) {
            $inlogKnopTekst      = $_SESSION['knopTekst']     = $voornaam . ' afmelden';
            $inlogKnopName       = $_SESSION['submitNaam'] = 'meld_af';
            $inlogKnopClass		  = $_SESSION['verberg'] = 'verberg';
+           $schrijfKnop         = $_SESSION['schrijf'] = '<li><a href="../www/schrijf.php">Bericht plaatsen</a></li>';
          } else {
            // niet gevonden in de database
            $fouten = 'Uw gebruikersnaam en wachtwoord stemmen niet overeen.';
@@ -77,11 +79,13 @@ if ( isset($_POST['log_in']) ) {
   $inlogKnopTekst     = $_SESSION['knopTekst'] = 'Log in';
   $inlogKnopName      = $_SESSION['submitNaam'] = 'log_in';
   $inlogKnopClass	    =	$_SESSION['verberg'] = 'form-group';
+  $schrijfKnop        = $_SESSION['schrijf']  ='';
+  //header('location: index.php'); geeft foutmelding headers sent
 }
 
 
-echo "loginphp doorlopen...";
-geefSession();
+// echo "loginphp doorlopen...";
+// geefSession();
 // de sessie weergeven
 function geefSession() {
   echo '<pre>';

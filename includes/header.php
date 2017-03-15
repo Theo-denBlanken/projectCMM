@@ -36,6 +36,7 @@ require_once('../includes/contactFormulier.php');
                       <li class="active"><a href="index.php">Home</a></li>
                       <li><a href="about.php">About</a></li>
                       <li><a href="contact.php">Contact</a></li>
+                      <?php echo $schrijfKnop ?>
                   </ul>
                   <form class="navbar-form navbar-right" method="post">
                       <div class="<?php echo $inlogKnopClass ?>">

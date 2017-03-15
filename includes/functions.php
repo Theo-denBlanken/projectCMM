@@ -3,6 +3,16 @@
 // de inlogfunctie
 include('inlog.php');
 
+// ingelogd functie
+function ingelogd() {
+  $welIngelogd = false;
+  $voornaam = $_SESSION['vnaam'];
+  if( isset( $voornaam ) && $voornaam != '' ) {
+    $welIngelogd = true;
+  }
+  return $welIngelogd;
+}
+
 function haalWaardeVanKeyOp($arr, $key) {
   // deze functie controlleert of een key bestaat en haalt dan de waarde op
   if( !isset($arr[$key]) ) {

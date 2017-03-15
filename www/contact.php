@@ -6,7 +6,9 @@ require_once('../includes/header.php');
     <div class="jumbotron">
         <div class="container">
             <h1>Contact</h1>
-
+            <h3> <?php
+            echo ( ingelogd() ? 'u bent ingelogd' : 'Probeer eerst in te loggen.' )
+            ?></h3>
             <p>Dit is de contactpagina van een eenvoudige website. <br>
 				Het omvat een grote callout genoemd de helden. Eenheid en drie ondersteunende stukken of inhoud. Gebruik het als een uitgangspunt om iets.</p>
 
