@@ -1,6 +1,6 @@
 <?php
-session_start();
-// geefSession(); 
+
+// geefSession();
 
 error_reporting(E_ALL);
 ini_set('display_errors', true);

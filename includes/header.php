@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include('settings.php');
 require_once('functions.php');
@@ -38,12 +39,13 @@ require_once('../includes/contactFormulier.php');
                   </ul>
                   <form class="navbar-form navbar-right" method="post">
                       <div class="<?php echo $inlogKnopClass ?>">
-                          <input type="text" placeholder="theo@cmm.nl" value="<?php echo $_SESSION['email']; ?>" class="form-control" name="email">
+                          <input type="text" placeholder="theo@cmm.nl" value="<?php echo $email; ?>" class="form-control" name="email">
                       </div>
                       <div class="<?php echo $inlogKnopClass ?>">
-                          <input type="password" placeholder="Wachtwoord" value="<?php echo ''; ?>" class="form-control" name="wachtwoord">
+                          <input type="password" placeholder="Wachtwoord" value="" class="form-control" name="wachtwoord">
                       </div>
                       <button type="submit" name="<?php echo  $inlogKnopName ; ?>" class="btn btn-success"><?php echo $inlogKnopTekst; ?></button>
+                          <!-- foutmeldingen -->
                       <p style="color: red;"><?php echo $fouten ?></p>
                   </form>
 
