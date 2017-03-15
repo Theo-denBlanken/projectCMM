@@ -31,7 +31,7 @@ $kop = $samenvatting = $inhoud = $onvolledig = '';
         }
 
         // de query opstellen
-
+        
 
  }
 
