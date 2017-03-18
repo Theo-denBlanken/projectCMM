@@ -18,8 +18,47 @@ require_once('../includes/header.php');
 
     <div class="container">
         <div class="row">
-            <?php
 
+
+            <?php
+              // berichten uit de database
+
+              // verbinden met de database
+              $verbinding = mysqli_connect( DB_HOST, DB_USERNAME, DB_WACHTWOORD, DB_DATABASE );
+              // controlleer de verbinding
+              if( mysqli_connect_errno() ) {
+                die( 'Fout bij het maken van de databaseverbinding: ' . mysqli_connect_error( $db_verbinding ) );
+              }
+
+              // query opstellen
+              $query = "SELECT kop, samenvatting, datum, vnaam, tsv, anaam FROM nieuws
+                        LEFT JOIN gebruikers ON nieuws.id
+                        WHERE gebruikers.id = nieuws.gebruiker_id";
+
+              // query uitvoeren
+              $deBerichten = mysqli_query( $verbinding, $query );
+              // controle bericht succesvol
+              if ( mysqli_errno( $verbinding ) ) {
+                die( 'de query is niet goed: '. $verbinding->error );
+              } else {
+                $gelukt = 'berichten opgehaald';
+              }
+
+              // de berichten plaatsen
+              if ( mysqli_num_rows($deBerichten) > 1 ) {
+                while( $bericht = mysqli_fetch_assoc( $deBerichten ) ) {
+                  $html =   '<div class="col-lg-4">';
+                  $html .=  '<h3>' . $bericht['kop'] . "</h3> \n";
+                  $html .=  '<p>' . $bericht['samenvatting'] . "</p> \n";
+                  $html .= '<p><em>' . $bericht['vnaam'] . ' ' . $bericht['anaam'];
+                  $html .= ' ' . $bericht['datum'] . "</em></p> \n";
+                  $html .=  "</div> \n";
+                  echo $html;
+                }
+              }
+
+
+            // nep berichten maken
             $paragraaf = '<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
                 condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
                 euismod. Donec sed odio dui. </p>'."\n";
@@ -38,8 +77,10 @@ require_once('../includes/header.php');
               echo "</div>";
             }
              ?>
+             <?php echo $gelukt ?>
 
         </div>
+
 
 <?php
 require_once('../includes/footer.php');

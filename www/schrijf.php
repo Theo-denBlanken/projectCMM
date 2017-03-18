@@ -21,17 +21,33 @@ $kop = $samenvatting = $inhoud = $onvolledig = '';
    } else { $onvolledig .= 'De samenvatting onbreekt <br>';
    }
 
+   if( 0 == $onvolledig) {
+     // verbind met database
+     $verbinding = mysqli_connect( DB_HOST, DB_USERNAME, DB_WACHTWOORD, DB_DATABASE );
+     // controlleer de verbinding
+     if( mysqli_connect_errno() ) {
+       die( 'Fout bij het maken van de databaseverbinding: ' . mysqli_connect_error( $db_verbinding ) );
+     }
+
+     // de query opstellen
+     $query = "INSERT INTO nieuws(id, kop, samenvatting, inhoud, gebruiker_id, datum )
+     VALUES (NULL, '$kop', '$samenvatting' , '$inhoud', 2, NOW() )";
+
+     // de query plaatsen
+     $postBericht = mysqli_query( $verbinding , $query);
+
+     // controle bericht succesvol
+     if ( mysqli_errno( $verbinding ) ) {
+       die( 'de query is niet goed: '. $verbinding->error );
+     } else {
+       $onvolledig = 'bericht geplaatst';
+     }
+
+   }
 
 
-        // verbind met database
-        $verbinding = mysqli_connect( DB_HOST, DB_USERNAME, DB_WACHTWOORD, DB_DATABASE );
-        // controlleer de verbinding
-        if( mysqli_connect_errno() ) {
-          die( 'Fout bij het maken van de databaseverbinding: ' . mysqli_connect_error( $db_verbinding ) );
-        }
 
-        // de query opstellen
-        
+
 
  }
 
